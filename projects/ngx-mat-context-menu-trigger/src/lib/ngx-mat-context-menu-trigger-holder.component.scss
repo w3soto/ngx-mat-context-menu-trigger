@@ -1,0 +1,12 @@
+
+.ngx-mat-context-menu-trigger-holder {
+  position: fixed;
+  width: 0;
+  height: 0;
+  visibility: hidden;
+  overflow: hidden;
+  > div {
+    width: 0;
+    height: 0;
+  }
+}
