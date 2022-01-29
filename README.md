@@ -1,27 +1,60 @@
 # NgxMatContextMenuTrigger
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 13.1.2.
+Context menu trigger for Angular Material
 
-## Development server
+[StackBlitz Demo](https://stackblitz.com/edit/angular-ivy-5bojir)
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+[GitHub](https://github.com/w3soto/ngx-mat-context-menu-trigger)
 
-## Code scaffolding
+![Screenshot](https://raw.githubusercontent.com/w3soto/ngx-mat-context-menu-trigger/master/screenshot.png "Screenshot")
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+## Installation
+```shell
+npm -i ngx-mat-context-menu-trigger
+```
 
-## Build
+## Example
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+For more details see *projects/demo* application
 
-## Running unit tests
+```typescript
+import { NgxMatContextMenuTriggerModule } from "ngx-mat-context-menu-trigger";
+...
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+@NgModule({
+  imports: [
+    ...,
+    NgxMatContextMenuTriggerModule,
+  ],
+  ...
+})
+class AppModule { ... }
 
-## Running end-to-end tests
+```
 
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
+Template 
+```html
+  <div
+    class="context-menu-div"
+    [ngxMatContextMenuTriggerFor]="myMenu">
+    
+    Context menu
+    
+  </div>
 
-## Further help
+  <mat-menu #myMenu>
+    <button mat-menu-item>Menu item 1</button>
+    <button mat-menu-item>Menu item 2</button>
+    <button mat-menu-item>Menu item 3</button>
+  </mat-menu>
+```
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+## Directives 
+
+* **ngxMatContextMenuTriggerFor**
+
+| @Input | Type | Default | Description |
+| ------ | ---- | ------- | ----------- |
+| **ngxMatContextMenuTriggerFor** | MatMenu | | MatMenu component (required!) |
+
+Exported as **ngxMatContextMenuTrigger**
