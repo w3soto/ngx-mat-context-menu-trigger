@@ -7,7 +7,6 @@ import { DOCUMENT } from "@angular/common";
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-  show: boolean = true;
 
   constructor(
     @Inject(DOCUMENT) private document: Document
