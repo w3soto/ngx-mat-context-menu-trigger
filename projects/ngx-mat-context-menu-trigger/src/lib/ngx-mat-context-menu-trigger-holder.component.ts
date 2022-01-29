@@ -25,6 +25,12 @@ export class NgxMatContextMenuTriggerHolder {
   @Input()
   menu!: MatMenu;
 
+  @Input()
+  menuData: any;
+
+  @Input()
+  restoreFocus: boolean = true;
+
   @ViewChild('menuTrigger', {static: true})
   menuTrigger!: MatMenuTrigger;
 

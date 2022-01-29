@@ -22,6 +22,12 @@ export class NgxMatContextMenuTrigger implements OnDestroy {
   @Input('ngxMatContextMenuTriggerFor')
   menu!: MatMenu;
 
+  @Input('ngxMatContextMenuTriggerData')
+  menuData: any;
+
+  @Input('ngxMatContextMenuTriggerRestoreFocus')
+  restoreFocus: boolean = true;
+
   menuTriggerHolder?: ComponentRef<NgxMatContextMenuTriggerHolder>;
 
   constructor(
@@ -44,6 +50,9 @@ export class NgxMatContextMenuTrigger implements OnDestroy {
   openMenu(x: number, y: number) {
     this.menuTriggerHolder = this._vcr.createComponent<NgxMatContextMenuTriggerHolder>(NgxMatContextMenuTriggerHolder);
     this.menuTriggerHolder.instance.menu = this.menu;
+    this.menuTriggerHolder.instance.menuData = this.menuData;
+    this.menuTriggerHolder.instance.restoreFocus = this.restoreFocus;
+
     this._cdr.detectChanges();
 
     this.menu.closed.pipe(
