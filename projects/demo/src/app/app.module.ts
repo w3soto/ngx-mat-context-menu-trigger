@@ -8,6 +8,7 @@ import { MatButtonModule } from "@angular/material/button";
 import { NgxMatContextMenuTriggerModule } from "ngx-mat-context-menu-trigger";
 
 import { AppComponent } from './app.component';
+import { MatDividerModule } from "@angular/material/divider";
 
 @NgModule({
   declarations: [
@@ -18,6 +19,7 @@ import { AppComponent } from './app.component';
     BrowserAnimationsModule,
 
     MatButtonModule,
+    MatDividerModule,
     MatMenuModule,
 
     NgxMatContextMenuTriggerModule

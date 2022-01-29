@@ -2,14 +2,19 @@
 
   <div
     class="context-menu-div"
-    [ngxMatContextMenuTriggerFor]="myMenu">
+    [ngxMatContextMenuTriggerFor]="myMenu"
+    [ngxMatContextMenuTriggerData]="{disabledItem: 2, title: 'My Menu Title'}">
     Context menu
   </div>
 
   <mat-menu #myMenu>
-    <button mat-menu-item>Menu item 1</button>
-    <button mat-menu-item>Menu item 2</button>
-    <button mat-menu-item>Menu item 3</button>
+    <ng-template matMenuContent let-title="title" let-disabledItem="disabledItem">
+      <h3 style="padding: 0px 16px; margin-bottom: 8px;">{{ title }}</h3>
+      <mat-divider></mat-divider>
+      <button mat-menu-item [disabled]="disabledItem == 1">Menu item 1</button>
+      <button mat-menu-item [disabled]="disabledItem == 2">Menu item 2</button>
+      <button mat-menu-item [disabled]="disabledItem == 3">Menu item 3</button>
+    </ng-template>
   </mat-menu>
 
   <!-- just for scrolling -->
