@@ -37,7 +37,7 @@ Template
   <div
     class="context-menu-div"
     [ngxMatContextMenuTriggerFor]="myMenu">
-    
+      
     Context menu
     
   </div>
@@ -56,5 +56,7 @@ Template
 | @Input | Type | Default | Description |
 | ------ | ---- | ------- | ----------- |
 | **ngxMatContextMenuTriggerFor** | MatMenu | | MatMenu component (required!) |
+| **ngxMatContextMenuTriggerData** | any | | |
+| **ngxMatContextMenuTriggerRestoreFocus** | boolean | true |  |
 
 Exported as **ngxMatContextMenuTrigger**
