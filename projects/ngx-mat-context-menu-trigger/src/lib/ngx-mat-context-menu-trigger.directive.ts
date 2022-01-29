@@ -5,7 +5,6 @@ import {
   HostListener,
   Input,
   OnDestroy,
-  OnInit,
   ViewContainerRef
 } from '@angular/core';
 import { first, tap } from "rxjs/operators";
