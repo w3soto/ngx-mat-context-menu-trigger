@@ -4,7 +4,7 @@ Context menu trigger for Angular Material
 
 [StackBlitz Demo](https://stackblitz.com/edit/angular-ivy-5bojir)
 
-[GitHub](https://github.com/w3soto/ngx-mat-context-menu-trigger)
+[GitHub](https://github.com/w3soto/ngx-mat-context-menu-trigger#readme)
 
 ![Screenshot](https://raw.githubusercontent.com/w3soto/ngx-mat-context-menu-trigger/master/screenshot.png "Screenshot")
 
