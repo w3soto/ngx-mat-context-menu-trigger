@@ -2,15 +2,16 @@ import {
   ChangeDetectorRef,
   ComponentRef,
   Directive,
-  HostListener,
+  HostListener, Inject,
   Input,
-  OnDestroy,
+  OnDestroy, Renderer2,
   ViewContainerRef
 } from '@angular/core';
 import { first, tap } from "rxjs/operators";
 
 import { MatMenu } from "@angular/material/menu";
 import { NgxMatContextMenuTriggerHolder } from "./ngx-mat-context-menu-trigger-holder.component";
+import { DOCUMENT } from "@angular/common";
 
 
 @Directive({
@@ -30,19 +31,23 @@ export class NgxMatContextMenuTrigger implements OnDestroy {
 
   menuTriggerHolder?: ComponentRef<NgxMatContextMenuTriggerHolder>;
 
+  private _docCtxMnuUnListen: Function = () => {};
+
   constructor(
     private _vcr: ViewContainerRef,
-    private _cdr: ChangeDetectorRef
-  ) { }
+    private _cdr: ChangeDetectorRef,
+    private _rnd: Renderer2,
+    @Inject(DOCUMENT) private _doc: Document,
+  ) {}
 
   ngOnDestroy() {
-    this.menuTriggerHolder?.instance.closeMenu();
-    this.menuTriggerHolder?.destroy();
+    this.closeMenu();
   }
 
   @HostListener('contextmenu', ['$event'])
   handleContextMenu(e: PointerEvent): boolean {
     e.stopPropagation();
+    this.closeMenu();
     this.openMenu(e.x, e.y);
     return false;
   }
@@ -60,11 +65,18 @@ export class NgxMatContextMenuTrigger implements OnDestroy {
       first()
     ).subscribe();
 
+    this._docCtxMnuUnListen = this._rnd.listen(this._doc, 'contextmenu', (e: Event) => {
+      this.closeMenu();
+      e.preventDefault();
+    });
+
     this.menuTriggerHolder?.instance.openMenu(x, y);
   }
 
   closeMenu() {
     this.menuTriggerHolder?.instance.closeMenu();
+    this.menuTriggerHolder?.destroy();
+    this._docCtxMnuUnListen();
   }
 
 }
