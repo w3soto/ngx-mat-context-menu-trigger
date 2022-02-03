@@ -32,6 +32,11 @@ class AppModule { ... }
 
 ```
 
+Disable native context menu
+```typescript
+document.body.addEventListener('contextmenu', (e: Event) => e.preventDefault());
+```
+
 Template 
 ```html
   <div
