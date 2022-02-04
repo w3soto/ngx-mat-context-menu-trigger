@@ -2,9 +2,9 @@
 
 Context menu trigger for Angular Material
 
-[StackBlitz Demo](https://stackblitz.com/edit/angular-ivy-5bojir)
+[![w3soto](https://circleci.com/gh/w3soto/ngx-mat-context-menu-trigger.svg?style=svg)](https://circleci.com/gh/w3soto/ngx-mat-context-menu-trigger)
 
-[GitHub](https://github.com/w3soto/ngx-mat-context-menu-trigger#readme)
+[StackBlitz Demo](https://stackblitz.com/edit/angular-ivy-5bojir)
 
 ![Screenshot](https://raw.githubusercontent.com/w3soto/ngx-mat-context-menu-trigger/master/screenshot.png "Screenshot")
 
