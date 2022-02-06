@@ -8,6 +8,7 @@ import {
   ViewEncapsulation
 } from "@angular/core";
 import { MatMenu, MatMenuTrigger } from "@angular/material/menu";
+import { coerceNumberProperty } from "@angular/cdk/coercion";
 
 
 @Component({
@@ -40,8 +41,8 @@ export class NgxMatContextMenuTriggerHolder {
   ) {}
 
   openMenu(x: number, y: number) {
-    this._renderer.setStyle(this._host.nativeElement, 'left', x + 'px');
-    this._renderer.setStyle(this._host.nativeElement, 'top', y + 'px');
+    this._renderer.setStyle(this._host.nativeElement, 'left', coerceNumberProperty(x, 0) + 'px');
+    this._renderer.setStyle(this._host.nativeElement, 'top', coerceNumberProperty(y, 0) + 'px');
     this.menuTrigger.openMenu();
   }
 

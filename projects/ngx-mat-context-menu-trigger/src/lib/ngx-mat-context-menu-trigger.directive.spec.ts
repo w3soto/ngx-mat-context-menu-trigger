@@ -62,18 +62,91 @@ describe('NgxMatContextMenuTrigger', () => {
     expect(component).toBeTruthy();
   });
 
-  it('should open and close menu', fakeAsync(() => {
-    component.trigger.openMenu(0,0);
+  it('should cleanup', () => {
+    spyOn(component.trigger, 'closeMenu').and.callThrough();
+    component.trigger.ngOnDestroy();
+    expect(component.trigger.closeMenu).toHaveBeenCalled();
+  });
+
+  it('should throw error if menu is not provided', () => {
+
+    (component.trigger.menu as any)  = null;
+    fixture.detectChanges();
+
+    expect(() => {
+      component.trigger.openMenu(0, 0);
+      fixture.detectChanges();
+    }).toThrowError();
+
+  });
+
+  it('should open and emit menuOpened event', fakeAsync(() => {
+
+    spyOn(component.trigger as any, '_onOpen').and.callThrough();
+    spyOn(component.trigger.menuOpened, 'emit').and.callThrough();
+
+    component.trigger.openMenu(0, 0);
+
     fixture.detectChanges();
 
     tick(100);
 
+    // check subscription call
+    expect((component.trigger as any)._onOpen).toHaveBeenCalledTimes(1);
+    expect(component.trigger.menuOpened.emit).toHaveBeenCalledTimes(1);
+    expect(component.trigger.menuOpen).toBeTrue();
+
+    // menu should be in DOM
     let openMenuItem = fixture.debugElement.query(By.css(".mat-menu-item"));
     expect(openMenuItem).toBeTruthy();
+
+    flush();
+
+  }));
+
+  it('should close and emit menuClosed event', fakeAsync(() => {
+
+    spyOn(component.trigger as any, '_onClose').and.callThrough();
+    spyOn(component.trigger.menuClosed, 'emit').and.callThrough();
+
+    component.trigger.openMenu(0, 0);
+    fixture.detectChanges();
 
     tick(100);
 
     component.trigger.closeMenu();
+    fixture.detectChanges();
+
+    tick(100);
+
+    // check subscription call
+    expect((component.trigger as any)._onClose).toHaveBeenCalledTimes(1);
+    expect(component.trigger.menuClosed.emit).toHaveBeenCalledTimes(1);
+    expect(component.trigger.menuOpen).toBeFalse();
+
+    // menu should be removed from DOM
+    let closeMenuItem = fixture.debugElement.query(By.css(".mat-menu-item"));
+    expect(closeMenuItem).toBeFalsy();
+
+    flush();
+  }));
+
+  it('should close on document contextmenu event', fakeAsync(() => {
+
+    component.trigger.openMenu(0, 0);
+    fixture.detectChanges();
+
+    tick(100);
+
+    fixture.nativeElement.ownerDocument.dispatchEvent(new Event('contextmenu'));
+    fixture.detectChanges();
+
+    tick(100);
+
+    // should be in closed state
+    expect(component.trigger.menuOpen).toBeFalse();
+
+    // menu should be removed from DOM
     let closeMenuItem = fixture.debugElement.query(By.css(".mat-menu-item"));
     expect(closeMenuItem).toBeFalsy();
 

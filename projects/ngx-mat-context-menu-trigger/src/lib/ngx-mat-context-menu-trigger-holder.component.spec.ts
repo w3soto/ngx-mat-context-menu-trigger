@@ -61,13 +61,34 @@ describe('NgxMatContextMenuTriggerHolder', () => {
   });
 
   it('should open and close menu', fakeAsync(() => {
-    component.holder.openMenu(0,0);
+    // OPEN
+    spyOn(component.holder.menuTrigger, 'openMenu').and.callThrough();
+
+    component.holder.openMenu(123,456);
+
+    // check menu position
+    let holder = fixture.debugElement.query(By.css('.ngx-mat-context-menu-trigger-holder'));
+    expect(holder.nativeElement.offsetLeft).toEqual(123);
+    expect(holder.nativeElement.offsetTop).toEqual(456);
+
+    // check trigger call
+    expect(component.holder.menuTrigger.openMenu).toHaveBeenCalled();
+
+    // check displayed menu
     let openMenuItem = fixture.debugElement.query(By.css(".mat-menu-item"));
     expect(openMenuItem).toBeTruthy();
 
     tick(100);
 
+    // CLOSE
+    spyOn(component.holder.menuTrigger, 'closeMenu').and.callThrough();
+
     component.holder.closeMenu();
+
+    // check trigger call
+    expect(component.holder.menuTrigger.closeMenu).toHaveBeenCalled();
+
+    // check destroyed menu
     let closeMenuItem = fixture.debugElement.query(By.css(".mat-menu-item"));
     expect(closeMenuItem).toBeFalsy();
 
