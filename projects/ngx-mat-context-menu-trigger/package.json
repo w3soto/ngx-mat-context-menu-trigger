@@ -1,6 +1,6 @@
 {
   "name": "ngx-mat-context-menu-trigger",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "license": "MIT",
   "homepage": "https://github.com/w3soto/ngx-mat-context-menu-trigger#readme",
   "keywords": ["angular", "material", "context", "menu", "trigger"],
