@@ -1,4 +1,4 @@
-import { Component, Inject } from '@angular/core';
+import { Component, ElementRef, Inject, ViewChild } from '@angular/core';
 import { DOCUMENT } from "@angular/common";
 
 @Component({
@@ -13,6 +13,14 @@ export class AppComponent {
   ) {
     // disable native context menu
     document.body.addEventListener('contextmenu', (e: Event) => e.preventDefault());
+  }
+
+  menuOpenedHandler() {
+    console.log('Menu opened')
+  }
+
+  menuClosedHandler() {
+    console.log('Menu closed')
   }
 
 }

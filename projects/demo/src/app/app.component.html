@@ -3,7 +3,9 @@
   <div
     class="context-menu-div"
     [ngxMatContextMenuTriggerFor]="myMenu"
-    [ngxMatContextMenuTriggerData]="{disabledItem: 2, title: 'My Menu Title'}">
+    [ngxMatContextMenuTriggerData]="{disabledItem: 2, title: 'My Menu Title'}"
+    (menuOpened)="menuOpenedHandler()"
+    (menuClosed)="menuClosedHandler()">
     Context menu
   </div>
 
