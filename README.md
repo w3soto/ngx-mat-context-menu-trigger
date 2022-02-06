@@ -64,4 +64,9 @@ Template
 | **ngxMatContextMenuTriggerData** | any | | |
 | **ngxMatContextMenuTriggerRestoreFocus** | boolean | true |  |
 
+| @Output | Type | Description |
+| ------- | ---- | ----------- |
+| **menuOpened** | void | Emitted when menu is opened |
+| **menuClosed** | void | Emitted when menu is closed |
+
 Exported as **ngxMatContextMenuTrigger**
