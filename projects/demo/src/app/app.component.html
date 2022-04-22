@@ -1,9 +1,8 @@
 
-
   <div
     class="context-menu-div"
     [ngxMatContextMenuTriggerFor]="myMenu"
-    [ngxMatContextMenuTriggerData]="{disabledItem: 2, title: 'My Menu Title'}"
+    [ngxMatContextMenuTriggerData]="{ disabledItem: 2, title: 'DIV Menu' }"
     (menuOpened)="menuOpenedHandler()"
     (menuClosed)="menuClosedHandler()">
     Context menu on HTML DIV element
@@ -11,7 +10,9 @@
 
   <app-test-component
     [ngxMatContextMenuTriggerFor]="myMenu"
-    [ngxMatContextMenuTriggerData]="{disabledItem: 2, title: 'My Menu Title'}">
+    [ngxMatContextMenuTriggerData]="{ disabledItem: 3,title: 'Test Component Menu' }"
+    (menuOpened)="menuOpenedHandler()"
+    (menuClosed)="menuClosedHandler()">
     Context menu on Angular component
   </app-test-component>
 
