@@ -1,5 +1,5 @@
 import {
-  ChangeDetectionStrategy,
+  ChangeDetectionStrategy, ChangeDetectorRef,
   Component,
   ElementRef,
   Input,
@@ -37,16 +37,19 @@ export class NgxMatContextMenuTriggerHolder {
 
   constructor(
     private _host: ElementRef,
-    private _renderer: Renderer2
+    private _renderer: Renderer2,
+    private _cdr: ChangeDetectorRef
   ) {}
 
   openMenu(x: number, y: number) {
     this._renderer.setStyle(this._host.nativeElement, 'left', coerceNumberProperty(x, 0) + 'px');
     this._renderer.setStyle(this._host.nativeElement, 'top', coerceNumberProperty(y, 0) + 'px');
     this.menuTrigger.openMenu();
+    this._cdr.detectChanges();
   }
 
   closeMenu() {
     this.menuTrigger.closeMenu();
+    this._cdr.detectChanges();
   }
 }
