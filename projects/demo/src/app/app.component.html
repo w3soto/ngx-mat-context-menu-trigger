@@ -13,9 +13,9 @@
     <ng-template matMenuContent let-title="title" let-disabledItem="disabledItem">
       <h3 style="padding: 0px 16px; margin-bottom: 8px;">{{ title }}</h3>
       <mat-divider></mat-divider>
-      <button mat-menu-item [disabled]="disabledItem == 1">Menu item 1</button>
-      <button mat-menu-item [disabled]="disabledItem == 2">Menu item 2</button>
-      <button mat-menu-item [disabled]="disabledItem == 3">Menu item 3</button>
+      <button mat-menu-item [disabled]="disabledItem == 1" (click)="onMenuItemClick('Menu item 1')">Menu item 1</button>
+      <button mat-menu-item [disabled]="disabledItem == 2" (click)="onMenuItemClick('Menu item 2')">Menu item 2</button>
+      <button mat-menu-item [disabled]="disabledItem == 3" (click)="onMenuItemClick('Menu item 3')">Menu item 3</button>
     </ng-template>
   </mat-menu>
 

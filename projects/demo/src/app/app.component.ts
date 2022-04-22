@@ -23,4 +23,8 @@ export class AppComponent {
     console.log('Menu closed')
   }
 
+  onMenuItemClick(item: string) {
+    console.log(item + ' clicked');
+  }
+
 }
