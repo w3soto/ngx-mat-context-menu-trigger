@@ -1,8 +1,8 @@
 import {
-  ChangeDetectorRef, ComponentFactoryResolver,
+  ChangeDetectorRef,
   ComponentRef,
   Directive, EventEmitter,
-  HostListener, Inject, Injector,
+  HostListener, Inject,
   Input,
   OnDestroy, Output, Renderer2,
   ViewContainerRef
@@ -56,7 +56,6 @@ export class NgxMatContextMenuTrigger implements OnDestroy {
     private _vcr: ViewContainerRef,
     private _cdr: ChangeDetectorRef,
     private _rnd: Renderer2,
-    private _injector: Injector,
     @Inject(DOCUMENT) private _doc: Document,
   ) {}
 
