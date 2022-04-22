@@ -9,10 +9,13 @@ import { NgxMatContextMenuTriggerModule } from "ngx-mat-context-menu-trigger";
 
 import { AppComponent } from './app.component';
 import { MatDividerModule } from "@angular/material/divider";
+import { MatCardModule } from "@angular/material/card";
+import { TestComponentComponent } from './test-component/test-component.component';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    TestComponentComponent
   ],
   imports: [
     BrowserModule,
@@ -21,6 +24,7 @@ import { MatDividerModule } from "@angular/material/divider";
     MatButtonModule,
     MatDividerModule,
     MatMenuModule,
+    MatCardModule,
 
     NgxMatContextMenuTriggerModule
   ],

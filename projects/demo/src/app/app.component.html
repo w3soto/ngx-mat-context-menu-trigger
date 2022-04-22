@@ -6,8 +6,14 @@
     [ngxMatContextMenuTriggerData]="{disabledItem: 2, title: 'My Menu Title'}"
     (menuOpened)="menuOpenedHandler()"
     (menuClosed)="menuClosedHandler()">
-    Context menu
+    Context menu on HTML DIV element
   </div>
+
+  <app-test-component
+    [ngxMatContextMenuTriggerFor]="myMenu"
+    [ngxMatContextMenuTriggerData]="{disabledItem: 2, title: 'My Menu Title'}">
+    Context menu on Angular component
+  </app-test-component>
 
   <mat-menu #myMenu>
     <ng-template matMenuContent let-title="title" let-disabledItem="disabledItem">

@@ -9,13 +9,25 @@
   padding: 24px;
 
   .context-menu-div {
+    position: relative;
     border: dashed 1px #0000008a;
     border-radius: 4px;
     width: 300px;
-    height: 300px;
+    height: 100px;
     display: flex;
     justify-content: center;
-    align-items: center
+    align-items: center;
+    &:before {
+      content: "<div> element";
+      position: absolute;
+      top: 2px;
+      left: 2px;
+      font-size: .8em;
+      padding: 0 6px;
+      display: inline-block;
+      background-color: #ccc;
+      border-radius: 2px;
+    }
   }
 
 }
