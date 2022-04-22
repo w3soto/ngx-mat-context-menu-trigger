@@ -41,16 +41,20 @@ Template
 ```html
   <div
     class="context-menu-div"
-    [ngxMatContextMenuTriggerFor]="myMenu">
+    [ngxMatContextMenuTriggerFor]="myMenu"
+    [ngxMatContextMenuTriggerData]="{title: 'My Menu Title'}">
       
     Context menu
     
   </div>
 
   <mat-menu #myMenu>
-    <button mat-menu-item>Menu item 1</button>
-    <button mat-menu-item>Menu item 2</button>
-    <button mat-menu-item>Menu item 3</button>
+    <ng-template matMenuContent let-title="title">
+      <h4>{{ title }}</h4>
+      <button mat-menu-item>Menu item 1</button>
+      <button mat-menu-item>Menu item 2</button>
+      <button mat-menu-item>Menu item 3</button>
+    </ng-template>
   </mat-menu>
 ```
 
