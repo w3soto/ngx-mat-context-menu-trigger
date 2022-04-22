@@ -9,24 +9,45 @@ import { NgxMatContextMenuTriggerModule } from "./ngx-mat-context-menu-trigger.m
 
 
 @Component({
+  selector: 'some-angular-component',
+  template: '<div>SOME ANGULAR COMPONENT</div>'
+})
+class SomeAngularComponent {
+}
+
+@Component({
   selector: 'test-component',
   template: `
+    
     <div 
       [ngxMatContextMenuTriggerFor]="testMenu"
       [ngxMatContextMenuTriggerData]="{text: text}"  
       #trigger="ngxMatContextMenuTrigger">
     </div>
+    
+    <some-angular-component 
+      [ngxMatContextMenuTriggerFor]="testMenu"
+      [ngxMatContextMenuTriggerData]="{text: text}"  
+      #triggerAngularComponent="ngxMatContextMenuTrigger">
+    </some-angular-component>    
+    
     <mat-menu #testMenu>
       <ng-template matMenuContent let-text="text">
         <button mat-menu-item>{{ text }}</button>
       </ng-template>
     </mat-menu>
+    
   `
 })
 class TestComponent {
   text: string = 'Hello World';
+
   @ViewChild('trigger', {static: true})
   trigger!: NgxMatContextMenuTrigger;
+
+  @ViewChild('trigger', {static: true})
+  triggerAngularComponent!: NgxMatContextMenuTrigger;
+
   @ViewChild(MatMenu, {static: true})
   menu!: MatMenu
 }
@@ -40,6 +61,7 @@ describe('NgxMatContextMenuTrigger', () => {
     await TestBed.configureTestingModule({
       declarations: [
         TestComponent,
+        SomeAngularComponent,
         NgxMatContextMenuTrigger
       ],
       imports: [
@@ -166,6 +188,28 @@ describe('NgxMatContextMenuTrigger', () => {
 
     const menuItem = fixture.debugElement.query(By.css(".mat-menu-item"));
     expect(menuItem.nativeElement.textContent).toEqual(text);
+
+    flush();
+  }));
+
+  it('should open if directive is applied to angular component', fakeAsync(() => {
+    spyOn(component.triggerAngularComponent as any, '_onOpen').and.callThrough();
+    spyOn(component.triggerAngularComponent.menuOpened, 'emit').and.callThrough();
+
+    component.triggerAngularComponent.openMenu(0, 0);
+
+    fixture.detectChanges();
+
+    tick(100);
+
+    // check subscription call
+    expect((component.triggerAngularComponent as any)._onOpen).toHaveBeenCalledTimes(1);
+    expect(component.triggerAngularComponent.menuOpened.emit).toHaveBeenCalledTimes(1);
+    expect(component.triggerAngularComponent.menuOpen).toBeTrue();
+
+    // menu should be in DOM
+    let openMenuItem = fixture.debugElement.query(By.css(".mat-menu-item"));
+    expect(openMenuItem).toBeTruthy();
 
     flush();
   }));

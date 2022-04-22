@@ -44,7 +44,13 @@ export class NgxMatContextMenuTriggerHolder {
   openMenu(x: number, y: number) {
     this._renderer.setStyle(this._host.nativeElement, 'left', coerceNumberProperty(x, 0) + 'px');
     this._renderer.setStyle(this._host.nativeElement, 'top', coerceNumberProperty(y, 0) + 'px');
+
+    this.menuTrigger.menu = this.menu;
+    this.menuTrigger.menuData = this.menuData;
+    this.menuTrigger.restoreFocus = this.restoreFocus;
+
     this.menuTrigger.openMenu();
+
     this._cdr.detectChanges();
   }
 

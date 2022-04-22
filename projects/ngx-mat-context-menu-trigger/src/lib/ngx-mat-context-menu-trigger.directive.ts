@@ -1,8 +1,8 @@
 import {
-  ChangeDetectorRef,
+  ChangeDetectorRef, ComponentFactoryResolver,
   ComponentRef,
   Directive, EventEmitter,
-  HostListener, Inject,
+  HostListener, Inject, Injector,
   Input,
   OnDestroy, Output, Renderer2,
   ViewContainerRef
@@ -13,6 +13,7 @@ import { first, tap } from "rxjs/operators";
 import { MatMenu } from "@angular/material/menu";
 
 import { NgxMatContextMenuTriggerHolder } from "./ngx-mat-context-menu-trigger-holder.component";
+import { BooleanInput, coerceBooleanProperty } from "@angular/cdk/coercion";
 
 
 @Directive({
@@ -28,7 +29,13 @@ export class NgxMatContextMenuTrigger implements OnDestroy {
   menuData: any;
 
   @Input('ngxMatContextMenuTriggerRestoreFocus')
-  restoreFocus: boolean = true;
+  set restoreFocus(val: BooleanInput) {
+    this._restoreFocus = coerceBooleanProperty(val);
+  }
+  get restoreFocus(): boolean {
+    return this._restoreFocus;
+  }
+  _restoreFocus: boolean = true;
 
   @Output()
   readonly menuClosed: EventEmitter<void> = new EventEmitter<void>();
@@ -49,6 +56,7 @@ export class NgxMatContextMenuTrigger implements OnDestroy {
     private _vcr: ViewContainerRef,
     private _cdr: ChangeDetectorRef,
     private _rnd: Renderer2,
+    private _injector: Injector,
     @Inject(DOCUMENT) private _doc: Document,
   ) {}
 
@@ -70,7 +78,10 @@ export class NgxMatContextMenuTrigger implements OnDestroy {
 
     this._checkMenu();
 
+    this._vcr.clear();
+
     this._menuTriggerHolder = this._vcr.createComponent<NgxMatContextMenuTriggerHolder>(NgxMatContextMenuTriggerHolder);
+
     this._menuTriggerHolder.instance.menu = this.menu;
     this._menuTriggerHolder.instance.menuData = this.menuData;
     this._menuTriggerHolder.instance.restoreFocus = this.restoreFocus;
