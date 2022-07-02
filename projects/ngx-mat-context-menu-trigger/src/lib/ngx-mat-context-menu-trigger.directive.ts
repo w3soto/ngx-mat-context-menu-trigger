@@ -37,6 +37,12 @@ export class NgxMatContextMenuTrigger implements OnDestroy {
   }
   _restoreFocus: boolean = true;
 
+  @Input('ngxMatContextMenuTriggerDisabled')
+  set disabled(val: BooleanInput) {
+    this._disabled = coerceBooleanProperty(val);
+  }
+  _disabled: boolean = false;
+
   @Output()
   readonly menuClosed: EventEmitter<void> = new EventEmitter<void>();
 
@@ -71,7 +77,7 @@ export class NgxMatContextMenuTrigger implements OnDestroy {
   }
 
   openMenu(x: number, y: number) {
-    if (this._menuOpen) {
+    if (this._menuOpen || this._disabled) {
       return;
     }
 

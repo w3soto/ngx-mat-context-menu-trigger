@@ -11,6 +11,8 @@ import { AppComponent } from './app.component';
 import { MatDividerModule } from "@angular/material/divider";
 import { MatCardModule } from "@angular/material/card";
 import { TestComponentComponent } from './test-component/test-component.component';
+import { MatCheckboxModule } from "@angular/material/checkbox";
+import { FormsModule } from "@angular/forms";
 
 @NgModule({
   declarations: [
@@ -20,11 +22,13 @@ import { TestComponentComponent } from './test-component/test-component.componen
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
+    FormsModule,
 
     MatButtonModule,
     MatDividerModule,
     MatMenuModule,
     MatCardModule,
+    MatCheckboxModule,
 
     NgxMatContextMenuTriggerModule
   ],

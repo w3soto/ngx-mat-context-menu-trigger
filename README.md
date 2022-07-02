@@ -65,6 +65,7 @@ Template
 | @Input | Type | Default | Description |
 | ------ | ---- | ------- | ----------- |
 | **ngxMatContextMenuTriggerFor** | MatMenu | | MatMenu component (required!) |
+| **ngxMatContextMenuTriggerDisabled** | boolean | false | |
 | **ngxMatContextMenuTriggerData** | any | | |
 | **ngxMatContextMenuTriggerRestoreFocus** | boolean | true |  |
 

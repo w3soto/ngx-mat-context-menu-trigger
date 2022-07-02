@@ -8,6 +8,8 @@ import { DOCUMENT } from "@angular/common";
 })
 export class AppComponent {
 
+  disabled: boolean = false;
+
   constructor(
     @Inject(DOCUMENT) private document: Document
   ) {
