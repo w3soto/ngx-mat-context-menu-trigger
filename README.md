@@ -10,7 +10,7 @@ Context menu trigger for Angular Material
 
 ## Installation
 ```shell
-npm -i ngx-mat-context-menu-trigger
+npm -i @w3soto/ngx-mat-context-menu-trigger
 ```
 
 ## Example

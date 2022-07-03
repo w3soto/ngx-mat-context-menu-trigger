@@ -1,6 +1,6 @@
 {
   "name": "@w3soto/ngx-mat-context-menu-trigger",
-  "version": "1.0.7",
+  "version": "1.0.8",
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
