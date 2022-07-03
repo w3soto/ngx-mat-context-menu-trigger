@@ -7,7 +7,8 @@
     "build": "ng build --configuration production",
     "build-watch": "ng build --watch --configuration development",
     "test": "ng test --watch=false --progress=false",
-    "test-watch": "ng test --watch=true --progress=true"
+    "test-watch": "ng test --watch=true --progress=true",
+    "publish": "ng build && cd dist/ngx-mat-context-menu-trigger && npm publish --access=public"
   },
   "private": true,
   "dependencies": {
