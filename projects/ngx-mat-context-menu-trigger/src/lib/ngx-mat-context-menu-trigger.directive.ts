@@ -87,6 +87,9 @@ export class NgxMatContextMenuTrigger implements OnDestroy {
 
     this._menuTriggerHolder = this._vcr.createComponent<NgxMatContextMenuTriggerHolder>(NgxMatContextMenuTriggerHolder);
 
+    // attach to document body
+    this._doc.body.appendChild(this._menuTriggerHolder.location.nativeElement);
+
     this._menuTriggerHolder.instance.menu = this.menu;
     this._menuTriggerHolder.instance.menuData = this.menuData;
     this._menuTriggerHolder.instance.restoreFocus = this.restoreFocus;
